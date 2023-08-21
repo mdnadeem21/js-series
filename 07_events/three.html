@@ -5,20 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Events | Chai aur JavaScript</title>
 </head>
-<body>
+<body style="background-color: #212121; color: #fff;">
     <h1>Chai aur JavaScript</h1>
     <button id="start">Start</button>
     <button id="stop">Stop</button>
 </body>
 <script>
-
+     let setIntervalId;
     const sayDate = function(str){
-        console.log(`${str}- `,Date.now());
+        let date = new Date()
+        console.log(`${str}- `,date.toLocaleTimeString());
     }
     // setInterval(sayDate,1000)
-    const stop = setInterval(sayDate,1000,"Hey it's ");
+    // const stop = setInterval(sayDate,1000,"Hey it's ");
 
-    clearInterval(stop);
+    // clearInterval(stop);
+    const startBtn = document.querySelector("#start");
+    startBtn.addEventListener("click",function(){
+        if(!setIntervalId){
+            setIntervalId = setInterval(sayDate,1000,"Hey it's ")
+        }
+    })
+    const stopBtn = document.querySelector("#stop");
+    stopBtn.addEventListener("click",function(){
+        clearInterval(setIntervalId);
+        setIntervalId = null
+    })
 
 </script>
 </html>
